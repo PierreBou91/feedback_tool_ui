@@ -41,7 +41,7 @@ const Home: NextPage = () => {
       <ul>
         {feedbacks.status === "success" && feedbacks.data.map((feedback: Feedback) => (
           <div key={feedback.id} className={styles.feedback}>
-            <Link href={router.pathname + "/feedbacks/" + feedback.id}>
+            <Link href={router.pathname + "feedbacks/" + feedback.id}>
               <a>
                 <h3>{feedback.title}</h3>
                 <p>{feedback.createdAt} - {feedback.company.name}</p>
