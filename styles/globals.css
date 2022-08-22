@@ -23,6 +23,8 @@ dd {
 ul[role='list'],
 ol[role='list'] {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Set core root defaults */
@@ -80,12 +82,15 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  row-gap: 5rem
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   margin-inline: auto;
-  padding-inline: 1rem;
+  row-gap: 1rem;
 }
 
 a {

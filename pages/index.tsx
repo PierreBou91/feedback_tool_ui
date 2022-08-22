@@ -38,19 +38,17 @@ const Home: NextPage = () => {
 
   return (
     <div className="container">
-      <ul>
-        {feedbacks.status === "success" && feedbacks.data.map((feedback: Feedback) => (
-          <div key={feedback.id} className={styles.feedback}>
-            <Link href={router.pathname + "feedbacks/" + feedback.id}>
-              <a>
-                <h3>{feedback.title}</h3>
-                <p>{feedback.createdAt} - {feedback.company.name}</p>
-                <p>{feedback.description}</p>
-              </a>
-            </Link>
-          </div>
-        ))}
-      </ul>
+      {feedbacks.status === "success" && feedbacks.data.map((feedback: Feedback) => (
+        <div key={feedback.id} className={styles.feedback}>
+          <Link href={router.pathname + "feedbacks/" + feedback.id}>
+            <a>
+              <h3>{feedback.title}</h3>
+              <p>{feedback.createdAt} - {feedback.company.name}</p>
+              <p>{feedback.description}</p>
+            </a>
+          </Link>
+        </div>
+      ))}
     </div>);
 };
 

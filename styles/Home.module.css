@@ -1,3 +1,9 @@
+.feedback {
+    border: 1px solid lightblue;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
 .feedback:hover {
     background: lightblue;
 }
