@@ -23,7 +23,7 @@ const Companies = (props: Props) => {
             <Link href={router.pathname + "/" + company.id}>
               <a>
                 <h3>{company.name}</h3>
-                <p>{company.createdAt.toDateString()}</p>
+                <p>{company.createdAt.toString()}</p>
               </a>
             </Link>
           </div>
