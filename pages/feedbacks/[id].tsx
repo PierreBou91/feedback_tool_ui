@@ -5,9 +5,16 @@ type Props = {
 };
 
 const Feedback = (props: Props) => {
-  const feedback = useQuery(["feedback"], async () => {
+  const feedback = useQuery([props.id], async () => {
     const response = await fetch(
       process.env.NEXT_PUBLIC_API_BASE_URL + "/feedbacks/" + props.id
+    );
+    return await response.json();
+  });
+
+  const comments = useQuery([props.id, "comments"], async () => {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_API_BASE_URL + "/comments?feedbackId=" + props.id
     );
     return await response.json();
   });
@@ -19,6 +26,20 @@ const Feedback = (props: Props) => {
         <h2>{feedback.data.createdAt}</h2>
         <h2>{feedback.data.status}</h2>
         <p>{feedback.data.description}</p>
+        <h3>Comments:</h3>
+        {comments.status === "success" ? (
+          <div>
+            {comments.data.map((comment: any) => (
+              <div key={comment.id}>
+                <h3>Author is {comment.author.name}</h3>
+                <p>{comment.message}</p>
+                {comment.attachmentLink !== null ? (
+                  <img src={comment.attachmentLink} />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     );
   }

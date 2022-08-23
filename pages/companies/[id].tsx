@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Company = (props: Props) => {
-  const company = useQuery(["company"], async () => {
+  const company = useQuery([props.id], async () => {
     const response = await fetch(
       process.env.NEXT_PUBLIC_API_BASE_URL + "/companies/" + props.id
     );
