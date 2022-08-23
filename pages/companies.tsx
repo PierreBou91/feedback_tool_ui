@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
 import styles from "styles/Companies.module.css";
 
 type Props = {};
@@ -20,7 +19,7 @@ const Companies = (props: Props) => {
       {companies.status === "success" &&
         companies.data.map((company: any) => (
           <div key={company.id} className={styles.company}>
-            <Link href={router.pathname + company.id}>
+            <Link href={router.pathname + "/" + company.id}>
               <a>
                 <h3>{company.name}</h3>
                 <p>{company.createdAt}</p>
