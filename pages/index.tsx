@@ -3,31 +3,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "styles/Home.module.css";
-
-interface Feedback {
-  id: string;
-  companyId: string;
-  company: Company;
-  title: string;
-  description: string;
-  attachmentLink: string;
-  isCritical: string;
-  status: string;
-  feedbackType: string;
-  comments: string[];
-  createdAt: string;
-  updatedAt: string;
-  closedAt: string;
-}
-
-interface Company {
-  id: string;
-  name: string;
-  hubspotLink: string;
-  notionLink: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Feedback } from "types/types";
 
 const Home: NextPage = () => {
   const feedbacks = useQuery(["feedbacks"], async () => {
@@ -46,9 +22,7 @@ const Home: NextPage = () => {
             <Link href={router.pathname + "feedbacks/" + feedback.id}>
               <a>
                 <h3>{feedback.title}</h3>
-                <p>
-                  {feedback.createdAt} - {feedback.company.name}
-                </p>
+                <p>{feedback.createdAt + "-" + feedback.company.name}</p>
                 <p>{feedback.description}</p>
               </a>
             </Link>

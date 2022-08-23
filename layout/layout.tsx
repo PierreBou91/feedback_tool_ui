@@ -3,18 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import styles from "styles/Layout.module.css";
+import { NavigationItem } from "types/types";
 
 type Props = {
   children: React.ReactNode;
 };
-
-interface NavigationItem {
-  id: string;
-  title: string;
-  href: string;
-  target?: string;
-  rel?: string;
-}
 
 const placeholder: NavigationItem[] = [
   {

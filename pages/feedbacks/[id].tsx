@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { GetServerSideProps } from "next/types";
+import { UserComment } from "types/types";
 
 type Props = {
   id: string;
@@ -29,7 +31,7 @@ const Feedback = (props: Props) => {
         <h3>Comments:</h3>
         {comments.status === "success" ? (
           <div>
-            {comments.data.map((comment: any) => (
+            {comments.data.map((comment: UserComment) => (
               <div key={comment.id}>
                 <h3>Author is {comment.author.name}</h3>
                 <p>{comment.message}</p>
@@ -47,7 +49,7 @@ const Feedback = (props: Props) => {
 
 export default Feedback;
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   // id of the page has to be in getServerSideProps because it's a dynamic route and the router is undefined before hydration
   // check https://nextjs.org/docs/api-reference/next/router at the query: object definition for more info
   //
@@ -62,4 +64,4 @@ export async function getServerSideProps(context: any) {
       id: id,
     },
   };
-}
+};

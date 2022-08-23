@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { GetServerSideProps } from "next";
 
 type Props = {
   id: string;
@@ -24,7 +25,7 @@ const Company = (props: Props) => {
 
 export default Company;
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   // id of the page has to be in getServerSideProps because it's a dynamic route and the router is undefined before hydration
   // check https://nextjs.org/docs/api-reference/next/router at the query: object definition for more info
   //
@@ -39,4 +40,4 @@ export async function getServerSideProps(context: any) {
       id: id,
     },
   };
-}
+};
