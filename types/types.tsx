@@ -40,8 +40,8 @@ export type UserComment = {
 export type User = {
   id: string;
   name: string;
-  email?: string[];
-  phone?: string[];
+  emails?: string[];
+  phones?: string[];
   userStatus: UserStatus;
   company: Company;
   companyId: string;

@@ -17,7 +17,7 @@ const User = (props: Props) => {
     return (
       <div className="container">
         <h1>{user.data.name}</h1>
-        {user.data.email.map((email: string) => (
+        {user.data.emails.map((email: string) => (
           <p key={email}>{email}</p>
         ))}
       </div>
