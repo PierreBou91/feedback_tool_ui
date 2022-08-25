@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 import styles from "styles/Home.module.css";
 import { Feedback } from "types/types";
 
 const Home: NextPage = () => {
+  const numberOfMoreAsked = useRef(0);
+
   const feedbacks = useQuery(["feedbacks"], async () => {
     const response = await fetch(
       process.env.NEXT_PUBLIC_API_BASE_URL + "/feedbacks"
@@ -13,6 +16,10 @@ const Home: NextPage = () => {
     return await response.json();
   });
   const router = useRouter();
+
+  const handleMore = () => {
+    numberOfMoreAsked.current++;
+  };
 
   return (
     <div className="container">
@@ -28,6 +35,7 @@ const Home: NextPage = () => {
             </Link>
           </div>
         ))}
+      <button onClick={handleMore}>More Plz</button>
     </div>
   );
 };
