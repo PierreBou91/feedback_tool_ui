@@ -23,7 +23,7 @@ const Home: NextPage = () => {
               <a>
                 <h3>{feedback.title}</h3>
                 <p>{feedback.createdAt + "-" + feedback.company.name}</p>
-                <p>{feedback.description}</p>
+                {/* <p>{feedback.description}</p> */}
               </a>
             </Link>
           </div>
