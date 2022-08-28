@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import PagePicker from "components/PagePicker";
+import SortFilterBar from "components/SortFilterBar";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="container">
+      <SortFilterBar />
       {feedbacks.status === "success" &&
         feedbacks.data.map((feedback: Feedback) => (
           <div key={feedback.id} className={styles.feedback}>
