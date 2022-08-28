@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import PagePicker from "components/PagePicker";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -28,33 +29,14 @@ const Home: NextPage = () => {
         "&skip=" +
         skip.current
     );
-    const data = await response.json();
-    return data;
+    return await response.json();
   });
 
   const router = useRouter(); // router for pathname in onClick of each feedback
 
-  // returns an array with the number of pages. This is used for the map function in the pagination
-  // there might be a better way to do this
-  const pagesArray = () => {
-    let pages: number[] = [];
-    for (let i = 1; i <= feedbackCount.data / take.current; i++) {
-      pages.push(i);
-    }
-    return pages;
-  };
-
-  // onClick of the page buttons
-  const handlePageClick = (e: React.MouseEvent<HTMLElement>) => {
-    const page = e.target as HTMLInputElement;
-    if (page.textContent !== null) {
-      skip.current = take.current * (parseInt(page.textContent) - 1);
-      feedbacks.refetch();
-    } else {
-      throw new Error(
-        "page.textContent is null, you might have changed the html button to another element, you need to explore e.target to get the page number"
-      );
-    }
+  const handlePageClick = (event: number) => {
+    skip.current = take.current * (event - 1);
+    feedbacks.refetch();
   };
 
   return (
@@ -71,12 +53,12 @@ const Home: NextPage = () => {
           </div>
         ))}
       <div>
-        {feedbackCount.status === "success" &&
-          pagesArray().map((page: number) => (
-            <button key={page} onClick={handlePageClick}>
-              {page}
-            </button>
-          ))}
+        {feedbackCount.status === "success" && (
+          <PagePicker
+            pages={feedbackCount.data / take.current}
+            onClick={handlePageClick}
+          />
+        )}
       </div>
     </div>
   );
